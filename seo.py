@@ -1,3 +1,4 @@
+#Initializing the document with id, url, title and content
 class Document:
     def __init__(self, doc_id, url, title, content):
         self.doc_id = doc_id
@@ -16,11 +17,11 @@ class InvertedIndex:
         for word in doc.content.split():
             word = word.lower()  # Normalize to lowercase for uniform indexing
             if word not in self.index:
-                self.index[word] = []
-            self.index[word].append(doc.doc_id)
+                self.index[word] = [] # Initialize a new list if keyword not found
+            self.index[word].append(doc.doc_id)  # Append document ID
 
     def get_documents(self, keyword):
-        return self.index.get(keyword.lower(), [])
+        return self.index.get(keyword.lower(), [])  # Return an empty list if keyword not found
 
     def __str__(self):
         return str(self.index)
@@ -49,7 +50,3 @@ if __name__ == "__main__":
 
     #Search with Empty Keyword
     print(index.get_documents(""))
-
-
-
-
